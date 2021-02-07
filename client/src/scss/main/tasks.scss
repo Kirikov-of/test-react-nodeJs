@@ -1,0 +1,57 @@
+.app {
+  &__tasks {
+    max-width: 920px;
+    background-color: transparent;
+    min-height: 500px;
+    margin: 0 auto;
+  }
+
+  &__newTask {
+    padding: 10px;
+    display: flex;
+
+    input {
+      padding: 5px;
+      flex: 1 0;
+    }
+
+    button {
+      padding: 5px;
+      background-color: #f05a5a;
+      outline: none;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background-color: #e75a5a;
+      }
+
+      &:active {
+        transform: translateY(3px);
+      }
+    }
+  }
+
+  &__item {
+    border-top: 1px solid #000000;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+
+    &:last-child {
+      border-bottom: 1px solid #000000;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 0px 0px 0px 10px;
+      flex: 1 0;
+    }
+  }
+
+  &__check {
+    width: 20px;
+    height: 20px;
+  }
+}

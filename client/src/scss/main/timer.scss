@@ -1,0 +1,38 @@
+.app {
+  &__timer {
+    margin: 50px auto;
+    height: 150px;
+    max-width: 920px;
+    border-radius: 10px;
+    text-align: center;
+
+    button {
+      padding: 5px 40px;
+      background-color: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      outline: none;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+
+      &:hover {
+        background-color: #ffffff32;
+      }
+
+      &:disabled {
+        background-color: transparent;
+        cursor: no-drop;
+      }
+    }
+  }
+
+  &__time {
+    h1 {
+      font-size: 4.5rem;
+      color: #fff;
+    }
+  }
+}
