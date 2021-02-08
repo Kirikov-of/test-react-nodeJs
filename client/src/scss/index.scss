@@ -1,5 +1,7 @@
 @import "./main/tasks.scss";
 @import "./main/timer.scss";
+@import "./signIn/signIn.scss";
+@import "./signUp/signUp.scss";
 
 * {
   margin: 0;
@@ -14,6 +16,7 @@
     padding: 10px 20px;
     border-bottom: 1px solid rgb(209, 77, 77);
     display: flex;
+    align-items: center;
 
     a {
       text-decoration: none;
@@ -23,6 +26,14 @@
       &:hover {
         color: rgb(58, 58, 58);
       }
+    }
+
+    h3 {
+      color: #888888;
+      font-size: 18px;
+      // line-height: normal;
+      margin-right: 10px;
+      margin-bottom: 0px;
     }
   }
 

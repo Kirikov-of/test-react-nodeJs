@@ -3,8 +3,8 @@ import Item from "./Item";
 
 function Tasks() {
   const [items, setItems] = React.useState([
-    { text: "1", id: 1 },
-    { text: "2", id: 2 },
+    { text: "Фиксануть лишнию регистрацию", id: 1 },
+    { text: "сделать регистрацию", id: 2 },
     { text: "3", id: 3 },
     { text: "4", id: 4 },
   ]);
