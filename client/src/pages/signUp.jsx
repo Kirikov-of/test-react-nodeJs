@@ -1,14 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { registration } from "../http/userAPI";
 
 function SignUp() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
 
+  const registr = async (e) => {
+    try {
+      e.preventDefault();
+      let data = await registration(email, password, name);
+    } catch (e) {
+      alert(e.response.data);
+    }
+  };
+
   return (
     <div className="app__form">
-      <form method="post">
+      <form>
         <input
           type="email"
           name="email"
@@ -34,7 +44,7 @@ function SignUp() {
           <p>
             <Link to="/">Назад</Link>
           </p>
-          <input type="submit" value="Регистрация" />
+          <button onClick={registr}>Регистрация</button>
         </div>
       </form>
     </div>

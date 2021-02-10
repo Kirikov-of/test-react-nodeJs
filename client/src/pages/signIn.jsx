@@ -1,9 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { login } from "../http/userAPI";
+import { useDispatch } from "react-redux";
+import { isAuth } from "../store/actions/userAction";
 
 function SignIn() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const log = async (e) => {
+    try {
+      e.preventDefault();
+      let data = await login(email, password);
+      dispatch(isAuth(true));
+      history.push("/");
+    } catch (e) {
+      alert(e.response.data);
+    }
+  };
 
   return (
     <div className="app__form">
@@ -26,7 +42,7 @@ function SignIn() {
           <p>
             Нету аккаунта? <Link to="/signUp">Зарегистрируйся</Link>
           </p>
-          <input type="submit" value="Войти" />
+          <input type="submit" value="Войти" onClick={log} />
         </div>
       </form>
     </div>

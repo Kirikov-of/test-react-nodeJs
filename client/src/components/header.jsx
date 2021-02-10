@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header() {
-  const [isAuth, setIsAuth] = React.useState(true);
+  const [isAuth, setIsAuth] = React.useState(false);
+  const isAuthenticated = useSelector((state) => state.userReducer.isAuth);
 
   const name = "Nikita";
 
@@ -11,7 +13,7 @@ function Header() {
       <div className="app__logo">
         <Link to="/">Logo</Link>
       </div>
-      {isAuth ? (
+      {isAuthenticated ? (
         <>
           <h3>Привет, {name}</h3>
           <Link to="/" onClick={() => setIsAuth(false)}>
