@@ -16,7 +16,8 @@
       padding: 5px;
 
       &[type="email"],
-      &[type="password"] {
+      &[type="password"],
+      &[type="name"] {
         padding-left: 5px;
         min-width: 300px;
         width: auto;
@@ -39,6 +40,7 @@
     align-items: center;
 
     p {
+      flex: 1 0;
       margin: 0;
       margin-right: 10px;
     }

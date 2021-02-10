@@ -1,7 +1,6 @@
 @import "./main/tasks.scss";
 @import "./main/timer.scss";
 @import "./signIn/signIn.scss";
-@import "./signUp/signUp.scss";
 
 * {
   margin: 0;
@@ -31,7 +30,6 @@
     h3 {
       color: #888888;
       font-size: 18px;
-      // line-height: normal;
       margin-right: 10px;
       margin-bottom: 0px;
     }
@@ -39,9 +37,5 @@
 
   &__logo {
     flex: 1 0;
-  }
-
-  &__signIn {
-    margin-right: 10px;
   }
 }

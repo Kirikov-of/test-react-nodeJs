@@ -5,8 +5,6 @@ function SignIn() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  console.log(email, password);
-
   return (
     <div className="app__form">
       <form method="post">
