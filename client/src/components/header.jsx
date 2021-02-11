@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "../store/actions/userAction";
 
 function Header() {
-  const [isAuth, setIsAuth] = React.useState(false);
-  const isAuthenticated = useSelector((state) => state.userReducer.isAuth);
+  const { isAuth } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+
+  const setIsAuth = () => {
+    dispatch(auth(false));
+    localStorage.removeItem("token");
+  };
 
   const name = "Nikita";
 
@@ -13,10 +19,10 @@ function Header() {
       <div className="app__logo">
         <Link to="/">Logo</Link>
       </div>
-      {isAuthenticated ? (
+      {isAuth ? (
         <>
           <h3>Привет, {name}</h3>
-          <Link to="/" onClick={() => setIsAuth(false)}>
+          <Link to="/" onClick={() => setIsAuth()}>
             Выйти
           </Link>
         </>

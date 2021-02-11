@@ -1,6 +1,6 @@
-export const isAuth = (isAuth) => ({
+export const auth = (auth) => ({
   type: "IS_AUTH",
-  payload: isAuth,
+  payload: auth,
 });
 
 export const user = (user) => async (dispatch) => {

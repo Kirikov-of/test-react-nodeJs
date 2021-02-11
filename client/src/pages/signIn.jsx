@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../http/userAPI";
 import { useDispatch } from "react-redux";
-import { isAuth } from "../store/actions/userAction";
+import { auth } from "../store/actions/userAction";
 
 function SignIn() {
   const [email, setEmail] = React.useState("");
@@ -11,10 +11,11 @@ function SignIn() {
   const history = useHistory();
 
   const log = async (e) => {
+    let data;
     try {
       e.preventDefault();
-      let data = await login(email, password);
-      dispatch(isAuth(true));
+      data = await login(email, password);
+      dispatch(auth(true));
       history.push("/");
     } catch (e) {
       alert(e.response.data);

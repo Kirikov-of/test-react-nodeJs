@@ -1,11 +1,17 @@
 import React from "react";
 
-function Item({ index, id, text, removeTask }) {
+function Item({ id, text, deleteTask, completeTask }) {
+  console.log(id);
+  const [check, setCheck] = React.useState(false);
+
   const remove = () => {
-    removeTask(index);
+    deleteTask(id);
   };
 
-  const [check, setCheck] = React.useState(false);
+  const complete = () => {
+    completeTask(id);
+    setCheck(id);
+  };
 
   return (
     <div key={id} className="app__item">
@@ -13,14 +19,14 @@ function Item({ index, id, text, removeTask }) {
         type="checkbox"
         name="idDone"
         className="app__check"
-        onClick={() => setCheck(!check)}
+        onClick={() => complete(id)}
       />
       <p style={{ textDecoration: check ? "line-through" : "none" }}>{text}</p>
       <input
         type="button"
         value="delete"
         name="delete"
-        onClick={() => remove(index)}
+        onClick={() => remove(id)}
       />
     </div>
   );

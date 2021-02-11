@@ -13,6 +13,6 @@ const authInterceptor = (config) => {
   return config;
 };
 
-$auth.interceptors.request.use(authInterceptor);
+$authUser.interceptors.request.use(authInterceptor);
 
 export { $authUser, $auth };

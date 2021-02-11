@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { registration } from "../http/userAPI";
 
 function SignUp() {
@@ -7,10 +7,14 @@ function SignUp() {
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
 
+  const history = useHistory();
+
   const registr = async (e) => {
+    let data;
     try {
       e.preventDefault();
-      let data = await registration(email, password, name);
+      data = await registration(email, password, name);
+      history.push("/signIn");
     } catch (e) {
       alert(e.response.data);
     }
@@ -42,9 +46,9 @@ function SignUp() {
         />
         <div className="app__action">
           <p>
-            <Link to="/">Назад</Link>
+            есть аккаунта? <Link to="/signIn">Войдите</Link>
           </p>
-          <button onClick={registr}>Регистрация</button>
+          <input type="submit" value="Регистрация" onClick={registr} />
         </div>
       </form>
     </div>

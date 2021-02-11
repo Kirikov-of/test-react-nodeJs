@@ -1,33 +1,25 @@
 import React from "react";
 import Item from "./Item";
+import { createTask, fetchTasks, complete, removeTask } from "../http/tasksAPI";
 
 function Tasks() {
-  const [items, setItems] = React.useState([
-    { text: "Фиксануть лишнию регистрацию", id: 1 },
-    { text: "сделать регистрацию", id: 2 },
-    { text: "3", id: 3 },
-    { text: "4", id: 4 },
-  ]);
+  const [items, setItems] = React.useState();
   const [textTast, setTextTask] = React.useState("");
 
+  React.useEffect(() => {
+    fetchTasks().then((data) => setItems(data));
+  }, []);
+
   const addTask = () => {
-    setItems((previtems) => [
-      ...previtems,
-      {
-        text: textTast,
-      },
-    ]);
+    createTask({ text: textTast }).then((data) => setTextTask(""));
   };
 
-  const removeTask = (index) => {
-    setItems((previtems) =>
-      previtems.filter((_, currIndex) => {
-        if (index !== currIndex) {
-          return true;
-        }
-        return false;
-      })
-    );
+  const deleteTask = (id) => {
+    removeTask({ id: id }).then((data) => alert(data));
+  };
+
+  const completeTask = (id) => {
+    complete({ id: id }).then((data) => alert(data));
   };
 
   return (
@@ -44,11 +36,11 @@ function Tasks() {
       {items &&
         items.map((item, index) => (
           <Item
-            removeTask={removeTask}
+            deleteTask={deleteTask}
             id={item.id}
             text={item.text}
             key={item.id}
-            index={index}
+            completeTask={completeTask}
           />
         ))}
     </div>
