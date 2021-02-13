@@ -4,15 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../store/actions/userAction";
 
 function Header() {
-  const { isAuth } = useSelector((state) => state.userReducer);
+  const { isAuth, user } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
   const setIsAuth = () => {
     dispatch(auth(false));
     localStorage.removeItem("token");
   };
-
-  const name = "Nikita";
 
   return (
     <div className="app__header">
@@ -21,7 +19,7 @@ function Header() {
       </div>
       {isAuth ? (
         <>
-          <h3>Привет, {name}</h3>
+          <h3>Привет {user.name}</h3>
           <Link to="/" onClick={() => setIsAuth()}>
             Выйти
           </Link>

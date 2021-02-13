@@ -2,7 +2,8 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../http/userAPI";
 import { useDispatch } from "react-redux";
-import { auth } from "../store/actions/userAction";
+import { auth, user } from "../store/actions/userAction";
+import { registration } from "../http/userAPI";
 
 function SignIn() {
   const [email, setEmail] = React.useState("");
@@ -16,6 +17,7 @@ function SignIn() {
       e.preventDefault();
       data = await login(email, password);
       dispatch(auth(true));
+      dispatch(user(email, password));
       history.push("/");
     } catch (e) {
       alert(e.response.data);

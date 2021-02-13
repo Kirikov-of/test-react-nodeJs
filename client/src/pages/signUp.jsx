@@ -46,7 +46,7 @@ function SignUp() {
         />
         <div className="app__action">
           <p>
-            есть аккаунта? <Link to="/signIn">Войдите</Link>
+            есть аккаунт? <Link to="/signIn">Войдите</Link>
           </p>
           <input type="submit" value="Регистрация" onClick={registr} />
         </div>
