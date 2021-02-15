@@ -1,6 +1,6 @@
 import React from "react";
-import Tasks from "../components/tasks";
-import Timer from "../components/timer";
+import Tasks from "../components/Tasks";
+import Timer from "../components/Timer";
 
 function main() {
   return (

@@ -25,11 +25,9 @@ function Header() {
           </Link>
         </>
       ) : (
-        <>
-          <Link to="/signIn" className="app__signIn">
-            Войти
-          </Link>
-        </>
+        <Link to="/signIn" className="app__signIn">
+          Войти
+        </Link>
       )}
     </div>
   );

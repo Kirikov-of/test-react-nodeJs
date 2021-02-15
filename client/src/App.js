@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { signIn, signUp, Main, AuthPage } from "./pages";
-import Header from "./components/header";
+import { Main, AuthPage } from "./pages";
+import Header from "./components/Header";
 import { check } from "./http/userAPI";
 import { auth, user } from "./store/actions/userAction";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ function App() {
     check()
       .then((data) => {
         dispatch(auth(true));
-        dispatch(user(true));
+        dispatch(user(data));
       })
       .finally(() => setLoading(false));
   }, []);
@@ -27,8 +27,6 @@ function App() {
         <Route path="/" component={Main} exact />
         <Route path="/signIn" component={AuthPage} />
         <Route path="/signUp" component={AuthPage} />
-        {/* <Route path="/signIn" component={signIn} />
-        <Route path="/signUp" component={signUp} /> */}
         <Redirect to="/" />
       </Switch>
     </div>

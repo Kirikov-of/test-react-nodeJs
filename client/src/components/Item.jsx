@@ -1,16 +1,15 @@
 import React from "react";
+import { complete, removeTask } from "../http/tasksAPI";
 
-function Item({ id, text, deleteTask, completeTask }) {
+function Item({ id, text, status }) {
   console.log(id);
-  const [check, setCheck] = React.useState(false);
 
-  const remove = () => {
-    deleteTask(id);
+  const deleteTask = (id) => {
+    removeTask({ id: id });
   };
 
-  const complete = () => {
-    completeTask(id);
-    setCheck(id);
+  const completeTask = (id) => {
+    complete({ id: id });
   };
 
   return (
@@ -19,14 +18,15 @@ function Item({ id, text, deleteTask, completeTask }) {
         type="checkbox"
         name="idDone"
         className="app__check"
-        onClick={() => complete(id)}
+        onChange={() => completeTask(id)}
+        checked={status}
       />
-      <p style={{ textDecoration: check ? "line-through" : "none" }}>{text}</p>
+      <p style={{ textDecoration: status ? "line-through" : "none" }}>{text}</p>
       <input
         type="button"
         value="delete"
         name="delete"
-        onClick={() => remove(id)}
+        onClick={() => deleteTask(id)}
       />
     </div>
   );
