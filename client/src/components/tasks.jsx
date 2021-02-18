@@ -1,17 +1,17 @@
 import React from "react";
 import Item from "./Item";
 import AddTask from "./AddTask";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getItem } from "../store/actions/itemAction";
 
-const Tasks = () => {
+export default function Tasks({ items }) {
   const dispatch = useDispatch();
 
-  const items = useSelector((state) => state.itemsReducer.items);
-
   React.useEffect(() => {
-    dispatch(getItem(items));
-  }, [dispatch]);
+    dispatch(getItem());
+  }, []);
+
+  console.log("item", items);
 
   return (
     <div className="app__tasks">
@@ -27,6 +27,4 @@ const Tasks = () => {
         ))}
     </div>
   );
-};
-
-export default Tasks;
+}

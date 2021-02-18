@@ -1,15 +1,22 @@
 import React from "react";
 import { complete, removeTask } from "../http/tasksAPI";
+import { useDispatch } from "react-redux";
+import { getItem } from "../store/actions/itemAction";
 
 function Item({ id, text, status }) {
   console.log(id);
+  const dispatch = useDispatch();
 
   const deleteTask = (id) => {
-    removeTask({ id: id });
+    if (global.confirm("Вы точно хотите удалить задачу?")) {
+      removeTask({ id: id });
+    }
+    setTimeout(() => dispatch(getItem()), 50);
   };
 
   const completeTask = (id) => {
     complete({ id: id });
+    setTimeout(() => dispatch(getItem()), 50);
   };
 
   return (

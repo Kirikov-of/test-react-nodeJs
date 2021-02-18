@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const $authUser = axios.create({
-  baseURL: process.env.REACT_APP_URL,
+  baseURL: "http://localhost:8080",
 });
 
 const $auth = axios.create({
-  baseURL: process.env.REACT_APP_URL,
+  baseURL: "http://localhost:8080",
 });
 
 const authInterceptor = (config) => {

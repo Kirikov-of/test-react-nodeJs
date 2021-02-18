@@ -1,11 +1,22 @@
 import React from "react";
 import { createTask } from "../http/tasksAPI";
+import { useDispatch } from "react-redux";
+import { getItem } from "../store/actions/itemAction";
 
 function AddTask() {
   const [msg, setMsg] = React.useState("");
+  const dispatch = useDispatch();
 
   const addTask = () => {
+    if (!msg.trim()) {
+      alert("Поле не может быть пустым");
+      setMsg("");
+      return;
+    }
     createTask({ text: msg });
+    setTimeout(() => {
+      dispatch(getItem());
+    }, 50);
     setMsg("");
   };
 

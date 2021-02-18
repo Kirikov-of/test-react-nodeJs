@@ -19,7 +19,8 @@ const Auth = () => {
 
   const isLogin = location.pathname === SIGN_IN;
 
-  const click = async () => {
+  const click = async (e) => {
+    e.preventDefault();
     let data;
 
     try {
@@ -28,8 +29,9 @@ const Auth = () => {
       } else {
         data = await registration(email, password, name);
       }
-      dispatch(user(data));
       dispatch(auth(true));
+      dispatch(user(data));
+
       history.push("/");
     } catch (error) {
       alert(error.response.data);
@@ -55,7 +57,7 @@ const Auth = () => {
         />
         {!isLogin ? (
           <input
-            type="password"
+            type="name"
             name="name"
             placeholder="Введите имя..."
             onChange={(e) => setName(e.target.value)}
@@ -68,14 +70,18 @@ const Auth = () => {
               <p>
                 есть аккаунт? <Link to="/signIn">Войдите</Link>
               </p>
-              <input type="submit" value="Регистрация" onClick={click} />
+              <input
+                type="submit"
+                value="Регистрация"
+                onClick={(e) => click(e)}
+              />
             </>
           ) : (
             <>
               <p>
                 Нету аккаунта? <Link to="/signUp">Зарегистрируйся</Link>
               </p>
-              <input type="submit" value="Войти" onClick={click} />
+              <input type="submit" value="Войти" onClick={(e) => click(e)} />
             </>
           )}
         </div>
