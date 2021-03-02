@@ -1,5 +1,3 @@
-import signIn from "./signIn";
-import signUp from "./signUp";
 import Main from "./Main";
 import Auth from "./Auth";
-export { signIn, Main, signUp, Auth as AuthPage };
+export { Main, Auth as AuthPage };

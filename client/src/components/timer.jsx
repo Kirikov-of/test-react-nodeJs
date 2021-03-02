@@ -1,10 +1,12 @@
 import React from "react";
 
 function Timer() {
-  const [timer, setTimer] = React.useState(900);
+  const [timer, setTimer] = React.useState(2);
   const [change, setChange] = React.useState(true);
+  const [free, setFree] = React.useState(300);
 
   let t = React.useRef();
+  let f = React.useRef();
 
   const padTime = (time) => {
     return String(time).length === 1 ? `0${time}` : `${time}`;
@@ -19,14 +21,19 @@ function Timer() {
   };
 
   React.useEffect(() => {
-    if (timer < 900) {
+    if (timer < 2) {
       t = setTimeout(() => setTimer((c) => c - 1), 1000);
     }
 
     if (!timer) {
       clearTimeout(t);
+      f = setTimeout(() => setFree((c) => c - 1), 1000);
     }
-  }, [timer]);
+
+    if (!free) {
+      clearTimeout(f);
+    }
+  }, [timer, free]);
 
   const toggleState = () => {
     if (change) {
@@ -44,7 +51,7 @@ function Timer() {
       style={{ backgroundColor: timer ? "#f05a5a" : "#43bd5e" }}
     >
       <div className="app__time">
-        <h1>{format(timer)}</h1>
+        <h1>{timer > 0 ? format(timer) : format(free)}</h1>
       </div>
       {change ? (
         <button
@@ -67,8 +74,10 @@ function Timer() {
       <button
         className="app__time--restart"
         onClick={() => {
-          setTimer(900);
+          setTimer(2);
+          setFree(300);
           setChange(true);
+          clearInterval(f);
         }}
         disabled={!change && timer !== 0}
       >

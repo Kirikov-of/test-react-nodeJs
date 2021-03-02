@@ -1,15 +1,18 @@
 import React from "react";
 import Item from "./Item";
 import AddTask from "./AddTask";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getItem } from "../store/actions/itemAction";
 
 export default function Tasks({ items }) {
   const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.userReducer.isAuth);
 
   React.useEffect(() => {
-    dispatch(getItem());
-  }, []);
+    if (isAuth) {
+      dispatch(getItem());
+    }
+  }, [isAuth]);
 
   console.log("item", items);
 
