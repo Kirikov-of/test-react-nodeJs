@@ -1,7 +1,7 @@
 import React from "react";
 
 function Timer() {
-  const [timer, setTimer] = React.useState(2);
+  const [timer, setTimer] = React.useState(900);
   const [change, setChange] = React.useState(true);
   const [free, setFree] = React.useState(300);
 
@@ -21,7 +21,7 @@ function Timer() {
   };
 
   React.useEffect(() => {
-    if (timer < 2) {
+    if (timer < 900) {
       t = setTimeout(() => setTimer((c) => c - 1), 1000);
     }
 
@@ -74,7 +74,7 @@ function Timer() {
       <button
         className="app__time--restart"
         onClick={() => {
-          setTimer(2);
+          setTimer(900);
           setFree(300);
           setChange(true);
           clearInterval(f);
