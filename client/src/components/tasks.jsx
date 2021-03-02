@@ -19,15 +19,17 @@ export default function Tasks({ items }) {
   return (
     <div className="app__tasks">
       <AddTask />
-      {items &&
-        items.map((item) => (
-          <Item
-            id={item.id}
-            text={item.text}
-            key={item.id}
-            status={item.status}
-          />
-        ))}
+      {isAuth
+        ? items &&
+          items.map((item) => (
+            <Item
+              id={item.id}
+              text={item.text}
+              key={item.id}
+              status={item.status}
+            />
+          ))
+        : null}
     </div>
   );
 }
