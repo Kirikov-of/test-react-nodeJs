@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { getItem } from "../store/actions/itemAction";
 
 function Item({ id, text, status }) {
-  console.log(id);
   const dispatch = useDispatch();
 
   const deleteTask = (id) => {

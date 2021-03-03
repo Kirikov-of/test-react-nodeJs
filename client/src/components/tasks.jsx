@@ -14,8 +14,6 @@ export default function Tasks({ items }) {
     }
   }, [isAuth]);
 
-  console.log("item", items);
-
   return (
     <div className="app__tasks">
       <AddTask />
