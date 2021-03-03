@@ -7,10 +7,3 @@ export const user = (user) => ({
   type: "USER",
   payload: user,
 });
-
-// export const user = (user) => async (dispatch) => {
-//   await dispatch({
-//     type: "USER",
-//     payload: user,
-//   });
-// };

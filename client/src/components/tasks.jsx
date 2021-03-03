@@ -6,13 +6,15 @@ import { getItem } from "../store/actions/itemAction";
 
 export default function Tasks({ items }) {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.userReducer.isAuth);
+  const { isAuth, user } = useSelector((state) => state.userReducer);
 
   React.useEffect(() => {
     if (isAuth) {
-      dispatch(getItem());
+      let userId = user.id;
+      console.log(user);
+      dispatch(getItem(userId));
     }
-  }, [isAuth]);
+  }, [isAuth, user]);
 
   return (
     <div className="app__tasks">

@@ -1,25 +1,30 @@
 import React from "react";
 import { createTask } from "../http/tasksAPI";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getItem } from "../store/actions/itemAction";
-import { useSelector } from "react-redux";
 
 function AddTask() {
   const [msg, setMsg] = React.useState("");
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.userReducer.isAuth);
+  const { isAuth, user } = useSelector((state) => state.userReducer);
+
+  let newTask = user.id;
+  console.log(newTask);
 
   const addTask = () => {
-    if (!msg.trim()) {
-      alert("Поле не может быть пустым");
+    if (isAuth) {
+      if (!msg.trim()) {
+        alert("Поле не может быть пустым");
+        setMsg("");
+        return;
+      }
+
+      createTask({ text: msg, userId: newTask });
+      setTimeout(() => {
+        dispatch(getItem(newTask));
+      }, 50);
       setMsg("");
-      return;
     }
-    createTask({ text: msg });
-    setTimeout(() => {
-      dispatch(getItem());
-    }, 50);
-    setMsg("");
   };
 
   return (
@@ -31,7 +36,9 @@ function AddTask() {
         placeholder="Введите задачу..."
         disabled={!isAuth}
       />
-      <button onClick={addTask}>Добавить</button>
+      <button disabled={!isAuth} onClick={addTask}>
+        Добавить
+      </button>
     </div>
   );
 }

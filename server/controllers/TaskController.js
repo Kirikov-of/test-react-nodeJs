@@ -3,7 +3,10 @@ const Task = require("../models/task.model");
 class TaskController {
   async addTask(req, res) {
     const { text } = req.body;
-    const task = await Task.create({ text });
+    const userId = req.params.id;
+    const task = await Task.create({ text, userId: userId }).catch(
+      (e) => new Error(e)
+    );
     return res.json(task);
   }
 
@@ -13,7 +16,7 @@ class TaskController {
       where: {
         id: `${id}`,
       },
-    });
+    }).catch((e) => new Error(e));
     res.send(`okay task destroy ${id}`);
   }
 
@@ -27,12 +30,16 @@ class TaskController {
           status: false,
         },
       }
-    );
+    ).catch((e) => alert(e));
     res.send("okay");
   }
 
   async getAll(req, res) {
-    const tasks = await Task.findAll();
+    const id = req.params.id;
+    const tasks = await Task.findAll({ where: { userId: id } }).catch((e) =>
+      console.log(e)
+    );
+
     return res.json(tasks);
   }
 }

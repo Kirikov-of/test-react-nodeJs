@@ -42,6 +42,16 @@ class UserController {
     const token = generateToken(req.user.id, req.user.name, req.user.email);
     return res.json({ token });
   }
+
+  // async getAll(req, res) {
+  //   const id = req.params.id;
+  //   const allUsers = await User.findAll({
+  //     where: {
+  //       id: id,
+  //     },
+  //   });
+  //   return res.json(allUsers);
+  // }
 }
 
 module.exports = new UserController();

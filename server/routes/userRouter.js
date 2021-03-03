@@ -9,4 +9,6 @@ router.post("/signUp", UserController.registration);
 
 router.get("/auth", authMiddleware, UserController.checkUser);
 
+// router.get("/users/:id", UserController.getAll);
+
 module.exports = router;
