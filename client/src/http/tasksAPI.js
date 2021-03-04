@@ -5,7 +5,7 @@ export const createTask = async (text, userId) => {
     const { data } = await $authUser.post(`/add/${userId}`, text);
     return data;
   } catch (error) {
-    alert(error);
+    return error;
   }
 };
 
@@ -14,7 +14,7 @@ export const removeTask = async (id) => {
     const { data } = await $authUser.post("/remove", id);
     return data;
   } catch (error) {
-    alert(error);
+    return error;
   }
 };
 
@@ -23,7 +23,7 @@ export const complete = async (id) => {
     const { data } = await $authUser.post("/complete", id);
     return data;
   } catch (error) {
-    alert(error);
+    return error;
   }
 };
 
@@ -32,6 +32,6 @@ export const fetchTasks = async (tasks, userId) => {
     const { data } = await $authUser.get(`/fetchtask/${userId}`, tasks);
     return data;
   } catch (error) {
-    alert(error);
+    return error;
   }
 };

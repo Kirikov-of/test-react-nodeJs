@@ -8,23 +8,20 @@ function AddTask() {
   const dispatch = useDispatch();
   const { isAuth, user } = useSelector((state) => state.userReducer);
 
-  let newTask = user.id;
-  console.log(newTask);
-
   const addTask = () => {
-    if (isAuth) {
-      if (!msg.trim()) {
-        alert("Поле не может быть пустым");
-        setMsg("");
-        return;
-      }
+    const userId = user.id;
 
-      createTask({ text: msg, userId: newTask });
-      setTimeout(() => {
-        dispatch(getItem(newTask));
-      }, 50);
+    if (!msg.trim()) {
+      alert("Поле не может быть пустым");
       setMsg("");
+      return;
     }
+
+    createTask({ text: msg }, userId);
+    setTimeout(() => {
+      dispatch(getItem(userId));
+    }, 50);
+    setMsg("");
   };
 
   return (

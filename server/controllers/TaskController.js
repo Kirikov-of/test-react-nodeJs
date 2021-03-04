@@ -4,8 +4,8 @@ class TaskController {
   async addTask(req, res) {
     const { text } = req.body;
     const userId = req.params.id;
-    const task = await Task.create({ text, userId: userId }).catch(
-      (e) => new Error(e)
+    const task = await Task.create({ text, userId }).catch((e) =>
+      console.log(e)
     );
     return res.json(task);
   }
@@ -30,14 +30,14 @@ class TaskController {
           status: false,
         },
       }
-    ).catch((e) => alert(e));
+    ).catch((e) => new Error(e));
     res.send("okay");
   }
 
   async getAll(req, res) {
     const id = req.params.id;
-    const tasks = await Task.findAll({ where: { userId: id } }).catch((e) =>
-      console.log(e)
+    const tasks = await Task.findAll({ where: { userId: id } }).catch(
+      (e) => new Error(e)
     );
 
     return res.json(tasks);
