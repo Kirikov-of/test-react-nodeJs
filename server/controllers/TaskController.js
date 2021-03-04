@@ -4,9 +4,7 @@ class TaskController {
   async addTask(req, res) {
     const { text } = req.body;
     const userId = req.params.id;
-    const task = await Task.create({ text, userId }).catch((e) =>
-      console.log(e)
-    );
+    const task = await Task.create({ text, userId }).catch((e) => new Error(e));
     return res.json(task);
   }
 
