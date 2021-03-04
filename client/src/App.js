@@ -21,14 +21,19 @@ function App() {
 
   return (
     <div className="app">
-      {loading ? "" : null}
-      <Header />
-      <Switch>
-        <Route path="/" component={Main} exact />
-        <Route path="/signIn" component={AuthPage} />
-        <Route path="/signUp" component={AuthPage} />
-        <Redirect to="/" />
-      </Switch>
+      {loading ? (
+        <div className="loading"></div>
+      ) : (
+        <>
+          <Header />
+          <Switch>
+            <Route path="/" component={Main} exact />
+            <Route path="/signIn" component={AuthPage} />
+            <Route path="/signUp" component={AuthPage} />
+            <Redirect to="/" />
+          </Switch>
+        </>
+      )}
     </div>
   );
 }
