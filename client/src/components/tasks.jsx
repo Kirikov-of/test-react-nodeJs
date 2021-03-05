@@ -11,7 +11,6 @@ export default function Tasks({ items }) {
   React.useEffect(() => {
     if (isAuth) {
       let userId = user.id;
-      console.log(user);
       dispatch(getItem(userId));
     }
   }, [isAuth, user]);
